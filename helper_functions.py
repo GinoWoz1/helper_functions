@@ -23,6 +23,10 @@ import os
 from sklearn.metrics import confusion_matrix,roc_auc_score,roc_curve
 
 
+from IPython import get_ipython
+
+get_ipython().run_line_magic('matplotlib','inline')
+
 """""""""""""""""""""
  processing module
 
@@ -208,7 +212,7 @@ def PlotContRegress(dataframe,target,columns):
     for col in columns:
         i+=1
         ax=plt.subplot(frows,fcols,i)
-        sns.regplot(x=col,y=dataframe[target],data=dataframe,ax=ax)
+        sns.regplot(x=col,y=target,data=dataframe,ax=ax)
     plt.xlabel(col)
 
 def pear_corr(dataframe):
@@ -233,7 +237,7 @@ def PlotCatClass(dataframe,target,cat_feats,fcols=3):
     
     for i,col in enumerate(cat_feats):
         plt.subplot(frows,fcols,i+1)
-        sns.countplot(dataframe[col],hue = dataframe[target])
+        sns.countplot(dataframe[col],hue = target)
 
 def PlotContClass(dataframe,target,columns,bins=10,fcols=2,):
     fcols = fcols
@@ -242,7 +246,7 @@ def PlotContClass(dataframe,target,columns,bins=10,fcols=2,):
     
     for i,col in enumerate(columns):
         plt.subplot(frows,fcols,i+1)
-        sns.countplot(dataframe[col],hue = dataframe[target])
+        sns.countplot(dataframe[col],hue = target)
 
 
 """""""""""""""""""""
